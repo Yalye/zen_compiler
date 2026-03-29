@@ -40,4 +40,22 @@ def Standalone_FooOp : Standalone_Op<"foo", [Pure,
     }];
 }
 
+def FilterPointOp : Standalone_Op<"filter_point", [Pure]> {
+    let summary = "Filters a 3D point based on a threshold.";
+    let description = [{
+        此算子接收一个 3D 向量（点）和一个阈值，如果点强度超过阈值则保留。
+    }];
+
+    // 输入：一个 3D 向量（Tensor）和一个浮点数阈值
+    let arguments = (ins F32Tensor:$input_point, F32:$threshold);
+
+    // 输出：过滤后的 3D 向量
+    let results = (outs F32Tensor:$output_point);
+
+    // 允许自动生成 C++ 声明
+    // let hasCustomAssemblyFormat = 1;
+
+    let assemblyFormat = " `(` $input_point `,` $threshold `)` attr-dict `:` `(` type($input_point) `,` type($threshold) `)` `->` type($output_point) ";
+}
+
 #endif // STANDALONE_OPS
