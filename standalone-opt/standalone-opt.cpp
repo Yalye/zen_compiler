@@ -24,9 +24,12 @@
 #include "Standalone/StandaloneDialect.h"
 #include "Standalone/StandaloneOpsDialect.cpp.inc"
 
+void registerTestPass();
+
 int main(int argc, char **argv) {
   mlir::registerAllPasses();
   // TODO: Register standalone passes here.
+  registerTestPass();
 
   mlir::DialectRegistry registry;
   registry.insert<mlir::standalone::StandaloneDialect>();
