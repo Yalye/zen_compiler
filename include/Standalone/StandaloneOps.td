@@ -58,4 +58,15 @@ def FilterPointOp : Standalone_Op<"filter_point", [Pure]> {
     let assemblyFormat = " `(` $input_point `,` $threshold `)` attr-dict `:` `(` type($input_point) `,` type($threshold) `)` `->` type($output_point) ";
 }
 
+def HelloWorldOp : Standalone_Op<"hello_world"> {
+    let summary = "my first mlir op";
+    let description = [{
+        这个算子不接收参数，也不返回结果，仅用于证明 Dialect 跑通了。
+    }];
+
+    let arguments = (ins);
+    let results = (outs);
+}
+
+
 #endif // STANDALONE_OPS
